@@ -24,7 +24,7 @@ public class BrewingService {
     @Scheduled(fixedRate = 5000)
     public void checkForLowInventory() {
         beerRepository.findAll().forEach(beer -> {
-            Integer invQOH = beerInventoryService.getOnhandInventory(beer.getId());
+            Integer invQOH = beerInventoryService.getOnHandInventory(beer.getId());
 
             log.debug("Min OnHand is: " + beer.getMinOnHand());
             log.debug("Inventory is: " + invQOH);
