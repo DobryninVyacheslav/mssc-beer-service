@@ -4,6 +4,7 @@ import guru.springframework.msscbeerservice.services.inventory.model.BeerInvento
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +17,11 @@ import java.util.UUID;
 
 @Slf4j
 @Component
+@Profile("!local-discovery")
 @ConfigurationProperties(prefix = "sfg.brewery", ignoreUnknownFields = false)
 public class BeerInventoryServiceRestTemplateImpl implements BeerInventoryService {
 
-    private static final String INVENTORY_PATH = "/api/v1/beer/{beerId}/inventory";
+    public static final String INVENTORY_PATH = "/api/v1/beer/{beerId}/inventory";
     private final RestTemplate restTemplate;
 
     private String beerInventoryServiceHost;
@@ -33,12 +35,13 @@ public class BeerInventoryServiceRestTemplateImpl implements BeerInventoryServic
     }
 
     @Override
-    public Integer getOnhandInventory(UUID beerId) {
+    public Integer getOnHandInventory(UUID beerId) {
         log.debug("Calling Inventory Service");
 
         ResponseEntity<List<BeerInventoryDto>> responseEntity = restTemplate
                 .exchange(beerInventoryServiceHost + INVENTORY_PATH, HttpMethod.GET, null,
-                        new ParameterizedTypeReference<>(){}, beerId);
+                        new ParameterizedTypeReference<>() {
+                        }, beerId);
 
         //sum from inventory list
         return Objects.requireNonNull(responseEntity.getBody())
