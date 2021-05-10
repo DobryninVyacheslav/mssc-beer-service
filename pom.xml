@@ -12,6 +12,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>mssc-beer-service</name>
     <description>MSSC Beer Service</description>
+    <properties>
+        <docker.image.prefix>dobryninvyacheslav</docker.image.prefix>
+    </properties>
 
     <dependencies>
         <dependency>
