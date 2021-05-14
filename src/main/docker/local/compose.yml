@@ -74,7 +74,7 @@ services:
       SPRING_ZIPKIN_BASEURL: http://zipkin
       SPRING_ARTEMIS_HOST: jms
       SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/beerorderservice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-      MSSC_BEER_SERVICE_HOST: http://beer-service:8080
+      SFG_BREWERY_BEER-SERVICE-HOST: http://beer-service:8080
   gateway:
     image: dobryninvyacheslav/mssc-brewery-gateway
     ports:
