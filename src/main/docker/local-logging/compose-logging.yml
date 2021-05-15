@@ -61,6 +61,7 @@ services:
     restart: on-failure
     labels:
       collect_logs_with_filebeat: "true"
+      decode_log_event_to_json_object: "true"
   inventory-failover:
     image: dobryninvyacheslav/mssc-inventory-failover
     ports:
@@ -90,6 +91,7 @@ services:
     restart: on-failure
     labels:
       collect_logs_with_filebeat: "true"
+      decode_log_event_to_json_object: "true"
   order-service:
     image: dobryninvyacheslav/mssc-beer-order-service
     ports:
@@ -110,6 +112,7 @@ services:
     restart: on-failure
     labels:
       collect_logs_with_filebeat: "true"
+      decode_log_event_to_json_object: "true"
   gateway:
     image: dobryninvyacheslav/mssc-brewery-gateway
     ports:
@@ -128,3 +131,4 @@ services:
     restart: on-failure
     labels:
       collect_logs_with_filebeat: "true"
+      decode_log_event_to_json_object: "true"
